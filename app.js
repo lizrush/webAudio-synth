@@ -67,7 +67,7 @@ var Synth = (function() {
     oscillator.frequency.value = noteValue;
     gainNode.gain.value = volumeValue;
   };
-  
+
   Synth.updateFrequency = function(event) {
     if (event.type == 'mousedown' || event.type == 'mousemove') {
       Synth.calculateFrequency(event.x, event.y);
@@ -78,9 +78,8 @@ var Synth = (function() {
   };
 
   return Synth
-});
+})();
 
 window.onload = function() {
   var synth = new Synth()
-  console.log('loaded')
 }
