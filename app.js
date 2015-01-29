@@ -49,6 +49,17 @@ var Synth = (function() {
     canvas.removeEventListener('mouseout', Synth.stopSound);
   };
 
+  Synth.calculateNote = function(posX) {
+    var noteDifference = highNote - lowNote;
+    var noteOffset = (noteDifference / canvas.offsetWidth) * (posX - canvas.offsetLeft);
+    return lowNote + noteOffset;
+  };
+
+  Synth.calculateVolume = function(posY) {
+    var volumeLevel = 1 - (((100 / canvas.offsetHeight) * (posY - canvas.offsetTop)) / 100);
+    return volumeLevel;
+  };
+
   return Synth
 });
 
