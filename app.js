@@ -60,6 +60,23 @@ var Synth = (function() {
     return volumeLevel;
   };
 
+  Synth.calculateFrequency = function(x, y) {
+    var noteValue = Synth.calculateNote(x);
+    var volumeValue = Synth.calculateVolume(y);
+
+    oscillator.frequency.value = noteValue;
+    gainNode.gain.value = volumeValue;
+  };
+  
+  Synth.updateFrequency = function(event) {
+    if (event.type == 'mousedown' || event.type == 'mousemove') {
+      Synth.calculateFrequency(event.x, event.y);
+    } else if (event.type == 'touchstart' || event.type == 'touchmove') {
+      var touch = event.touches[0];
+      Synth.calculateFrequency(touch.pageX, touch.pageY);
+    }
+  };
+
   return Synth
 });
 
