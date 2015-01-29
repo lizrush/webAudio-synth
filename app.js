@@ -38,8 +38,15 @@ var Synth = (function() {
     oscillator.start(0);
 
     canvas.addEventListener('mousemove', Synth.updateFrequency);
-    canvas.addEventListener('touchmove', SynthPad.updateFrequency);
-    canvas.addEventListener('mouseout', SynthPad.stopSound);
+    canvas.addEventListener('touchmove', Synth.updateFrequency);
+    canvas.addEventListener('mouseout', Synth.stopSound);
+  };
+
+  Synth.stopSound = function(event) {
+    oscillator.stop(0);
+    canvas.removeEventListener('mousemove', Synth.updateFrequency);
+    canvas.removeEventListener('touchmove', Synth.updateFrequency);
+    canvas.removeEventListener('mouseout', Synth.stopSound);
   };
 
   return Synth
